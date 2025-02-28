@@ -1,0 +1,1 @@
+Este Repositório simples serve como teste de CI/CD
