@@ -44,9 +44,6 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Build do projeto
-        run: npm run build
-
       - name: Deploy para o Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
