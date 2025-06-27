@@ -1,12 +1,12 @@
-name: Node.js Tests and Firebase Deploy
+name: Node.js Tests
 
 on:
   push:
     branches:
-      - main
+      - dev
   pull_request:
     branches:
-      - main
+      - dev
 
 jobs:
   test:
@@ -26,28 +26,3 @@ jobs:
 
       - name: Rodar testes
         run: npm test
-
-  deploy:
-    needs: test
-    if: github.event_name == 'push' # Só faz deploy em push, não em PR
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Instalar dependências
-        run: npm install
-
-      - name: Deploy para o Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          channelId: live
-          projectId: testedeploy-427bd
